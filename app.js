@@ -4,7 +4,7 @@ const helmet = require('helmet');
 const bodyParser = require('body-parser');
 const { errors } = require('celebrate');
 
-// const limiter = require('./middlewares/rateLimiter');
+const limiter = require('./middlewares/rateLimiter');
 
 const routeSignup = require('./routes/signup');
 const routeSignin = require('./routes/signin');
@@ -16,11 +16,8 @@ const routeCards = require('./routes/cards');
 
 const NotFoundError = require('./errors/NotFoundError');
 const error = require('./middlewares/error');
-const { rateLimiter } = require('./utils/constants');
 
 const URL = 'mongodb://localhost:27017/mestodb ';
-
-// const { PORT = 3000 } = process.env;
 
 mongoose.set('strictQuery', true);
 
@@ -36,7 +33,6 @@ mongoose
   });
 
 const app = express();
-const limiter = rateLimiter;
 
 app.use(helmet());
 
